@@ -2,7 +2,7 @@
 
 # BERT-eat-dog-world
 
-![Credit: dalle-2](bert-not-eat-dog.png)
+<img src="https://raw.githubusercontent.com/skogsgren/bert-eat-dog-world/main/bert-not-eat-dog.png" width=33% height=33%>
 
 Dogwhistle identification model using a transformer model (BERT) and active
 learning implemented by using the `modAL` library in concordance with the
