@@ -1,0 +1,7 @@
+transformers
+modal
+skorch
+pandas
+numpy
+sklearn
+torch

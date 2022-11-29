@@ -1,0 +1,11 @@
+{
+    "MAX_EPOCHS": 5,
+    "BATCH_SIZE": 16,
+    "OPTIMIZER": "torch.optim.AdamW",
+    "LR": 5e-5,
+    "CRITERION": "nn.CrossEntropyLoss",
+    "MODEL": "KB/bert-base-swedish-cased",
+    "PRETRAINED_TOKENIZER": "KB/bert-base-swedish-cased",
+    "PATIENCE": 2,
+    "POOL_SAMPLE_SIZE": 2500
+}
