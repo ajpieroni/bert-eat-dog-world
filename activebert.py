@@ -150,7 +150,7 @@ class ActiveBert():
                     self.dl.X_pool,
                     np.arange(self.POOL_SAMPLE_SIZE), axis=0
                     )
-            self.dl.Y_pool = np.delete(
+            self.dl.y_pool = np.delete(
                     self.dl.y_pool,
                     np.arange(self.POOL_SAMPLE_SIZE), axis=0
                     )
