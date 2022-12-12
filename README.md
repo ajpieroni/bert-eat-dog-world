@@ -4,11 +4,17 @@
 
 <img src="https://raw.githubusercontent.com/skogsgren/bert-eat-dog-world/main/bert-not-eat-dog.png" width=33% height=33%>
 
-Dogwhistle identification model using a transformer model (BERT) and active
-learning implemented by using the `modAL` library in concordance with the
-`skorch` API to connect it with 🤗 transformers. The final $f_1$ score I
-managed to achieve was $0.87$. Dataset was gathered, and annotation for the
-original dataset was performed using
+1. "Å fan , visste jag inte om , endast läst hennes böcker om bronsåldern och
+   järnåldern, oerhört **kulturberikande**"
+2. "Inte otroligt, besökte det lokala badet igår, 50% icke-svenskar,
+   vattenpipor, ﬁck njuta av **kulturberikande** musik... som låter värre än
+   Håkan Hellströms värsta låtar"
+
+Dogwhistle identification (e.g. between the interpretation in 1 and 2), model
+using a transformer model (BERT) and active learning implemented by using the
+`modAL` library in concordance with the `skorch` API to connect it with 🤗
+transformers. The final $f_1$ score I managed to achieve was $0.87$. Dataset
+was gathered, and annotation for the original dataset was performed using
 [skogsgren/lin354-annotation-ui](https://github.com/skogsgren/lin354-annotation-ui)
 
 [**Live demo on 🤗 spaces**](https://huggingface.co/spaces/skogsgren/LIN532-dogwhistle-identification)
