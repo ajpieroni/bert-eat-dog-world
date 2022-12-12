@@ -33,10 +33,11 @@ bit more than what you would have to if you've used the python scripts above.
 
 I'll also include *[this notebook](https://www.kaggle.com/code/skogsgren/lin523-experimentation-station/notebook)*
 (also on Kaggle), which contains all the different experimentations I performed
-in order to get to the conclusions present in the code on this repo. Certain
-implementations (e.g. how the dataset is split and imported) in that notebook
-look a bit difference than what they do here on this repo (less sophisticated
-imo), however they are mostly functionally equivalent.
+in order to get to the conclusions present in the code on this repo, as well as
+many of the motivations of *why* certain things were performed but not others.
+Certain implementations (e.g. how the dataset is split and imported) in that
+notebook look a bit difference than what they do here on this repo (less
+sophisticated imo), however they are mostly functionally equivalent.
 
 ## Data
 
@@ -67,6 +68,34 @@ pip3 install -r requirements.txt
 python3 main.py -train data/dg_train.tsv -dev data/dg_dev.tsv \
 -test data/dg_test.tsv -pool data/pool_dg.tsv -unseen data/unseen_dg.tsv
 ```
+
+## Code structure
+
+The code was created gradually through Jupyter notebooks, and then gathered at
+the end to create the python scripts above. The code structure of the notebooks
+are standard: 1.) preprocessing, 2.) preparing model, 3.) training model, 4.)
+active learning, 5.) evaluation. The python scripts have the following
+structure:
+
+```
+activebert.py:
+    Contains class for an active learner using BERT. The query_loop method
+    loops until the batch size is larger than available from the unannotated
+    dataset. This means that it most likely will loop forever (unless you're a
+    very diligent annotator).
+preprocessing.py:
+    Contains class for dataloader, i.e. a class that takes tsv files as input
+    and structures them in a way that is easily accessible for the active
+    learner.
+main.py:
+    Takes filenames as input from the command line and then creates an active
+    learner using those filenames by first creating a dataloader. Performs
+    active learning using the query_loop method, and deals with <ctrl+c> to
+    exit safely, saving the model to disk as well as simultaneously printing
+    metrics.
+```
+
+All in all, pretty standard stuff, I reckon.
 
 ## Further improvements
 
