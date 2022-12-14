@@ -9,7 +9,7 @@ import io
 
 class CPU_Unpickler(pickle.Unpickler):
     """unpickles model trained using CUDA with CPU instead
-    https://stackoverflow.com/questions/57081727"""
+    https://github.com/pytorch/pytorch/issues/16797#issuecomment-633423219"""
 
     def find_class(self, module, name):
         if module == "torch.storage" and name == "_load_from_bytes":
@@ -29,7 +29,7 @@ def main(*argv, predict=False):
                 x = input("> ")
                 print(f"\t{'🐕 Doggie' if al.predict([x])[0] == 1 else '🐈 Non-doggie'}")
         except KeyboardInterrupt:
-            sys.exit(1)
+            sys.exit(0)
     if os.path.exists("model.pkl"):
         print("Existing model found. Importing...")
         with open("model.pkl", "rb") as f:
@@ -64,12 +64,6 @@ def save_model(model):
 
 
 if __name__ == "__main__":
-    # In order to import models created using previous versions of the code
-    # (where there were no classes). This is only used if one uses a model for
-    # predicting.
-    def lr_schedule(current_step):
-        return 0
-
     parser = argparse.ArgumentParser(
         description="finetune huggingface model for dogwhistle identification"
     )
@@ -127,9 +121,16 @@ if __name__ == "__main__":
         help="tsv file containing unseen data",
     )
     args = parser.parse_args()
+    # i.e. if any of the required datasets for active learning are missing
     if args.train is None or args.dev is None or args.test is None or args.pool is None:
         if args.args_predict is not None:
             assert os.path.exists(args.args_predict)
+
+            def lr_schedule(current_step):
+                """dummy function in order to maintain compatibility with older
+                codebase that lacked classes (for prediction use only)"""
+                return 0
+
             main(args.args_predict, predict=True)
         else:
             print("ERROR: Can't perform active learning without providing datasets!")
