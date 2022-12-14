@@ -14,7 +14,7 @@
 Dogwhistle identification (e.g. between the interpretation in 1 and 2), model
 using a transformer model (BERT) and active learning implemented by using the
 `modAL` library in concordance with the `skorch` API to connect it with 🤗
-transformers. The final $f_1$ score I managed to achieve was $0.87$. Dataset
+transformers. The final $f_1$ score I managed to achieve was $0.85$. Dataset
 was gathered, and annotation for the original dataset was performed using
 [skogsgren/lin354-annotation-ui](https://github.com/skogsgren/lin354-annotation-ui)
 
