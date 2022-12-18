@@ -33,10 +33,26 @@ The code here is presented as Python scripts, although I recommend running this
 either on a computer with a powerful GPU, or (better) as a notebook on e.g.
 Kaggle (or at least free). Because active learning requires you to sit there
 and annotate data the model is most unsure of, you're gonna spend a lot of time
-waiting otherwise.  The code above can be found in notebook form on Kaggle
+waiting otherwise. The code above can be found in notebook form on Kaggle
 *[here](https://www.kaggle.com/code/skogsgren/lin523-sparse/notebook)*,
 although if you want to use that for your project you're gonna have to edit a
 bit more than what you would have to if you've used the python scripts above.
+
+One important thing that is worth explaining here in a little more detail is
+the reason for why I decided to query a sample of the large pool instead of
+just the pool itself (see `activebert.py`). The reason is very simple:
+performance (and convenience). The larger the pool you query the better results
+one gets, however, this comes at the cost of having to sit there and wait while
+the model queries the pool, which becomes excruciatingly slow if the pool is
+very large. Mine was only 80,000 and I had to sit there for a minute or two for
+every query. This is simply not acceptable if you're an annotator. So, what I
+did was that for every round of annotation in active learning I extract a
+$n$ random sample from the pool (set in `hyper_parameters.json` as
+`POOL_SAMPLE_SIZE`) and query against that instead. I feel that this balances
+both the performance aspect with the benefit of querying against the entire
+pool. The number you set is arbitrary, of course, but I recommend setting it as
+high as you can tolerate waiting depending on your hardware, as it better
+represents the distribution of the larger pool dataset.
 
 I'll also include *[this notebook](https://www.kaggle.com/code/skogsgren/lin523-experimentation-station/notebook)*
 (also on Kaggle), which contains all the different experimentations I performed
