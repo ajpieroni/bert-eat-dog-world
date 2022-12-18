@@ -106,7 +106,7 @@ if __name__ == "__main__":
         "-pool",
         metavar="FILE",
         type=str,
-        dest="unannotated",
+        dest="pool",
         required=False,
         default=None,
         help="tsv file containing unannotated data",
@@ -135,4 +135,4 @@ if __name__ == "__main__":
         else:
             print("ERROR: Can't perform active learning without providing datasets!")
             sys.exit(1)
-    main(args.train, args.dev, args.test, args.unannotated, args.unseen)
+    main(args.train, args.dev, args.test, args.pool, args.unseen)
